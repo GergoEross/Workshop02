@@ -1,0 +1,49 @@
+﻿@using Workshop02.Models;
+@model FoodIndexViewModel
+
+
+@section head{
+    <title>List your foods!</title>
+}
+
+<h1>Foods</h1>
+<form action="Food" method="post">
+    <select name="filter" id="filter">
+        @foreach (var item in Model.Categories)
+        {
+            if (item == Model.Selected)
+            {
+                @:<option selected value="@item">@item</option>
+            }
+            else
+            {
+                @:<option value="@item">@item</option>
+            }
+        }
+    </select>
+    <input type="submit" value="Select"/>
+</form>
+<table>
+    <tr>
+        <th>Picture</th>
+        <th>Name</th>
+        <th>Calories</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model.Foods)
+    {
+        @:<tr>
+        @: <td><img height="100" src="@Url.Action("GetImage", "Food", new {id = item.Id})"/></td>
+        @: <td>@item.Name</td>
+        @: <td>@item.Calories</td>
+        @: <td>@item.Category</td>
+        @: <td>@item.Price</td>
+        @: <td>
+        @:    <a href="/food/delete?id=@item.Id">Delete</a>
+        @:    <a href="/food/update?id=@item.Id">Update</a>
+        @: </td>
+        @: </tr>
+    }
+</table>

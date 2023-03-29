@@ -1,0 +1,27 @@
+﻿@using Workshop02.Models;
+@model Food
+
+@section head{
+    <title>Update your food!</title>
+}
+<h1>Update your food (@Model.Name)</h1>
+
+<form action="update" method="post" style="display: flex; flex-direction: column">
+    @Html.HiddenFor(t => t.Name)
+
+    @Html.LabelFor(t => t.Calories)
+    @Html.EditorFor(t => t.Calories)
+    @Html.ValidationMessageFor(t => t.Calories)
+
+    @Html.LabelFor(t => t.Category)
+    @Html.EditorFor(t => t.Category)
+    @Html.ValidationMessageFor(t => t.Category)
+
+    @Html.LabelFor(t => t.Price)
+    @Html.EditorFor(t => t.Price)
+    @Html.ValidationMessageFor(t => t.Price)
+
+
+    <input type="submit" value="Update" /> 
+
+</form>
